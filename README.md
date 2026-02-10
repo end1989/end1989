@@ -80,7 +80,7 @@ Enterprise data export tool in Java/Spring Boot. Complex `$lookup` aggregation p
 <tr>
 <td width="50%">
 
-**AI Image Classification Pipeline**
+**[AI Image Classification Pipeline](https://github.com/end1989/ai-image-classification)**
 
 End-to-end ML pipeline — CLIP for zero-shot classification, PaddleOCR for text extraction, active learning for continuous improvement. FastAPI backend with GPU-accelerated inference.
 
