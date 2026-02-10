@@ -69,7 +69,7 @@ Local-first hybrid RAG search engine. Crawls any documentation site, chunks it i
 </td>
 <td width="50%">
 
-**MongoDB Report Builder**
+**[MongoDB Report Builder](https://github.com/end1989/mongodb-report-builder)**
 
 Enterprise data export tool in Java/Spring Boot. Complex `$lookup` aggregation pipelines, multi-format export (CSV, JSON, Excel), SSE-based progress tracking across million-record collections.
 
@@ -89,7 +89,7 @@ End-to-end ML pipeline — CLIP for zero-shot classification, PaddleOCR for text
 </td>
 <td width="50%">
 
-**Task Orchestration Engine**
+**[Task Orchestration Engine](https://github.com/end1989/ai-manager)**
 
 Distributed manager-worker system with process isolation, resource limits, automated code review gates, secret detection, and audit trail logging.
 
