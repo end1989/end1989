@@ -2,7 +2,9 @@
 
 # Hey, I'm Eldon 👋
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=14B8A6&center=true&vCenter=true&width=600&lines=Software+Engineer+%7C+7%2B+years+shipping+production+code;Detection+%26+Data+Integrity+%7C+RAG+%7C+MCP+Servers;I+build+AI+safeguards+that+protect+real+people;Up+too+late+pair-programming+with+AI+models)](https://git.io/typing-svg)
+#### AI Trust & Safety · Detection & Data Integrity · RAG · MCP Servers
+
+[![Eldon Dahlin — Software Engineer building AI trust & safety tooling](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=14B8A6&center=true&vCenter=true&width=600&lines=Software+Engineer+%7C+7%2B+years+shipping+production+code;Detection+%26+Data+Integrity+%7C+RAG+%7C+MCP+Servers;I+build+AI+safeguards+that+protect+real+people;Red-teaming+models+to+find+where+they+break)](https://git.io/typing-svg)
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/eldon-dahlin)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:eldondahlin@gmail.com)
@@ -13,7 +15,7 @@
 
 ---
 
-Software engineer in Denver, 7+ years in. I started in Java and Spring Boot at Dish and Travelport, where I build the validation and data-integrity systems that keep millions of hotel records trustworthy — which mostly means catching the bad signal before it ever reaches anyone downstream. Somewhere along the way I fell hard for AI, and never looked back.
+Software engineer in Denver, 7+ years in. I started in Java and Spring Boot at Dish and Travelport, where I built the validation and data-integrity systems that kept millions of hotel records trustworthy — which mostly meant catching the bad signal before it ever reached anyone downstream. Somewhere along the way I fell hard for AI, and never looked back.
 
 These days you'll find me up too late pair-programming with Claude or watching Ollama serve local models at 2am. I love this stuff. I also build **safeguards** for it — because I've watched AI get turned against someone I care about, and it turns out "I love AI" and "I want AI to be safe" are the same sentence. If there's a new model or framework out, I've probably already spun it up to see what it can do — and to see how it breaks.
 
@@ -42,7 +44,7 @@ Local-first hybrid RAG search engine. Crawls any documentation site, chunks it i
 
 **[Task Orchestration Engine](https://github.com/end1989/ai-manager)**
 
-Distributed manager-worker system with process isolation, resource limits, automated review-and-approval gates, secret detection, and full audit-trail logging.
+Single-host manager-worker system with process isolation, resource limits, automated review-and-approval gates, secret detection, and full audit-trail logging.
 
 `FastAPI` · `SQLModel` · `Docker` · `process isolation`
 
@@ -111,10 +113,8 @@ Enterprise data export tool in Java/Spring Boot. Complex `$lookup` aggregation p
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=end1989&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=14b8a6&icon_color=14b8a6&text_color=94a3b8&ring_color=14b8a6" />
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=end1989&layout=compact&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=14b8a6&text_color=94a3b8&langs_count=8" />
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=end1989&theme=tokyonight&hide_border=true&background=0f172a&stroke=1e293b&ring=14b8a6&fire=14b8a6&currStreakLabel=14b8a6&sideLabels=94a3b8&dates=64748b&currStreakNum=e2e8f0&sideNums=e2e8f0" />
+<img height="180em" alt="Eldon Dahlin's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=end1989&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=14b8a6&icon_color=14b8a6&text_color=94a3b8&ring_color=14b8a6" />
+<img height="180em" alt="Eldon Dahlin's most-used languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=end1989&layout=compact&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=14b8a6&text_color=94a3b8&langs_count=8" />
 
 </div>
 
@@ -124,7 +124,7 @@ Enterprise data export tool in Java/Spring Boot. Complex `$lookup` aggregation p
 
 I like building things that are actually useful. I care about data quality, clean architecture, and AI that works in practice — and AI that stays on the side of the people using it. I've got a soft spot for local-first tools, trust & safety problems, and going deep on something until I understand exactly how it breaks.
 
-Galvanize bootcamp grad (2018), writing production code ever since. Lived in Peru for two years, speak Spanish, and I'm convinced the best debugging happens after midnight with a local model and too much coffee.
+Galvanize bootcamp grad (2018), writing production code ever since. Lived in Peru for two years, speak Spanish, and I do my best thinking with a hard problem and a local model running.
 
 <div align="center">
 
@@ -138,6 +138,6 @@ Galvanize bootcamp grad (2018), writing production code ever since. Lived in Per
 
 <div align="center">
 
-<img src="https://komarev.com/ghpvc/?username=end1989&color=14b8a6&style=flat-square&label=Profile+Views" />
+<img alt="Profile views" src="https://komarev.com/ghpvc/?username=end1989&color=14b8a6&style=flat-square&label=Profile+Views" />
 
 </div>
