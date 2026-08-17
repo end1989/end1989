@@ -1,0 +1,100 @@
+<!doctype html>
+<!--
+  Drawn cover images for the "More things I've built" cards.
+  Open with ?card=docsai or ?card=engine and screenshot #stage at 2x.
+  Canvas is 1200x525 (16:7) but the covers display at ~400px wide on GitHub,
+  so everything is drawn at "thumbnail scale": 4-6px strokes, 34-44px labels.
+  Fonts: IBM Plex Mono (labels), Instrument Sans (node titles) — OFL, in ./fonts/.
+-->
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('./fonts/InstrumentSans.ttf') format('truetype'); font-weight: 400 700; }
+  @font-face { font-family: 'IBM Plex Mono'; src: url('./fonts/IBMPlexMono-Regular.ttf') format('truetype'); font-weight: 400; }
+  @font-face { font-family: 'IBM Plex Mono'; src: url('./fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; }
+  html, body { margin: 0; background: transparent; }
+  #stage { width: 1200px; height: 525px; }
+  svg { display: block; }
+  .mono { font-family: 'IBM Plex Mono', Consolas, monospace; font-weight: 500; letter-spacing: 0.04em; }
+  .sans { font-family: 'Instrument Sans', 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+</style></head>
+<body><div id="stage"></div>
+<script>
+const card = new URLSearchParams(location.search).get('card') || 'docsai';
+const C = { bg: '#0f172a', panel: '#162033', line: '#2b3a52', ink: '#e6edf3', mute: '#8b98a9', teal: '#2dd4bf', tealDim: '#14b8a6', tealSoft: 'rgba(45,212,191,0.16)' };
+
+// small helpers
+const box = (x, y, w, h, extra = '') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${C.panel}" stroke="${C.line}" stroke-width="3" ${extra}/>`;
+const label = (x, y, t, size = 36, fill = C.mute, anchor = 'middle', cls = 'mono') => `<text class="${cls}" x="${x}" y="${y}" font-size="${size}" fill="${fill}" text-anchor="${anchor}">${t}</text>`;
+const arrow = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${C.tealDim}" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)"/>`;
+const defs = `<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="${C.tealDim}"/></marker></defs>`;
+
+let body = '';
+if (card === 'docsai') {
+  // docs  ->  bm25 + dense (two ranked lists merging)  ->  answer with citations
+  // node 1: documents (three stacked pages with folded corners)
+  const page = (x, y) => `<path d="M${x} ${y} h92 l34 34 v104 h-126 z" fill="${C.panel}" stroke="${C.line}" stroke-width="3"/><path d="M${x+92} ${y} v34 h34" fill="none" stroke="${C.line}" stroke-width="3"/>` +
+    [0,1,2].map(i => `<line x1="${x+20}" y1="${y+64+i*22}" x2="${x+20+ (i===2?54:86)}" y2="${y+64+i*22}" stroke="${C.mute}" stroke-opacity="0.55" stroke-width="5" stroke-linecap="round"/>`).join('');
+  body += page(120, 176) + page(96, 204) + page(72, 232);
+  body += label(148, 450, 'docs', 36);
+
+  // node 2: hybrid retrieval — two ranked bar lists
+  const listX = 372, listY = 128;
+  const bars = (x, y, lens, color) => lens.map((L, i) => `<rect x="${x}" y="${y + i*38}" width="${L}" height="22" rx="6" fill="${color}" fill-opacity="${i===0?1:0.55}"/>`).join('');
+  body += box(340, 96, 420, 300);
+  body += label(450, 176, 'bm25', 34, C.ink) + label(660, 176, 'dense', 34, C.ink);
+  body += bars(372, 200, [150, 118, 96, 70], C.mute) + bars(584, 200, [140, 128, 84, 60], C.mute);
+  // merged: teal braces converging to a single ranked list marker
+  body += `<path d="M448 350 q0 26 26 26 h56 M652 350 q0 26 -26 26 h-56" fill="none" stroke="${C.teal}" stroke-width="5" stroke-linecap="round"/>`;
+  body += `<circle cx="550" cy="376" r="9" fill="${C.teal}"/>`;
+  body += label(550, 450, 'hybrid · re-ranked', 34);
+
+  // node 3: answer with citations
+  body += box(830, 118, 300, 256);
+  const line = (y, w, hi) => `<rect x="862" y="${y}" width="${w}" height="16" rx="5" fill="${hi ? C.teal : C.mute}" fill-opacity="${hi?0.9:0.5}"/>`;
+  body += line(158, 220, false) + line(190, 236, false) + line(222, 168, false) + line(254, 232, false) + line(286, 120, false);
+  // citation chips
+  body += `<rect x="1004" y="214" width="58" height="34" rx="8" fill="${C.tealSoft}" stroke="${C.teal}" stroke-width="3"/>` + label(1033, 239, '[1]', 26, C.teal);
+  body += `<rect x="994" y="278" width="58" height="34" rx="8" fill="${C.tealSoft}" stroke="${C.teal}" stroke-width="3"/>` + label(1023, 303, '[2]', 26, C.teal);
+  body += label(980, 450, 'cited answer', 34);
+
+  // arrows
+  body += arrow(238, 284, 326, 284) + arrow(772, 246, 816, 246);
+}
+else if (card === 'engine') {
+  // manager -> three isolated workers -> review gate -> audit log
+  body += box(36, 190, 252, 140);
+  body += label(162, 250, 'manager', 38, C.ink, 'middle', 'sans');
+  body += label(162, 296, 'queue · dispatch', 24);
+
+  const wy = [82, 210, 338];
+  wy.forEach((y, i) => {
+    // dashed outer = process isolation boundary; solid inner = the worker
+    body += `<rect x="352" y="${y}" width="250" height="104" rx="16" fill="none" stroke="${C.tealDim}" stroke-opacity="0.7" stroke-width="3" stroke-dasharray="10 10"/>`;
+    body += `<rect x="372" y="${y+18}" width="210" height="68" rx="12" fill="${C.panel}" stroke="${C.line}" stroke-width="3"/>`;
+    body += label(477, y + 62, 'worker ' + (i+1), 30, C.ink);
+    body += arrow(292, 260, 344, y + 52);
+  });
+  body += label(462, 492, 'isolated · resource-limited', 28);
+
+  // review gate
+  body += `<path d="M700 262 l68 -68 l68 68 l-68 68 z" fill="${C.panel}" stroke="${C.teal}" stroke-width="4"/>`;
+  body += `<path d="M746 262 l14 14 l30 -32" fill="none" stroke="${C.teal}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  wy.forEach(y => { body += `<line x1="606" y1="${y+52}" x2="696" y2="262" stroke="${C.tealDim}" stroke-width="4" stroke-linecap="round" stroke-opacity="0.9"/>`; });
+  body += label(768, 380, 'review gate', 30);
+
+  // audit log
+  body += box(890, 122, 262, 280);
+  body += label(922, 168, 'audit log', 28, C.mute, 'start');
+  const rows = [['ok', 220], ['ok', 190], ['held', 200], ['ok', 160], ['ok', 210]];
+  rows.forEach(([s, w], i) => {
+    const y = 200 + i * 40;
+    body += `<circle cx="928" cy="${y}" r="7" fill="${s==='held' ? C.teal : C.mute}" fill-opacity="${s==='held'?1:0.6}"/>`;
+    body += `<rect x="948" y="${y-8}" width="${w-60}" height="16" rx="5" fill="${C.mute}" fill-opacity="0.45"/>`;
+  });
+  body += arrow(836, 262, 882, 262);
+}
+
+document.getElementById('stage').innerHTML =
+  `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="525" viewBox="0 0 1200 525">${defs}
+     <rect width="1200" height="525" fill="${C.bg}"/>${body}</svg>`;
+</script></body></html>

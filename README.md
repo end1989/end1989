@@ -57,6 +57,8 @@ Built for people who may be in danger: an emergency exit that swaps the tab for 
 <tr>
 <td width="50%" valign="top">
 
+[![Tailored’s Templates page — two of its eight print-tuned résumé templates, Meridian and Slate, rendered side by side on sample data](https://raw.githubusercontent.com/end1989/end1989/main/assets/cards/tailored.webp)](https://github.com/end1989/tailored)
+
 **[Tailored](https://github.com/end1989/tailored)**
 
 Local AI résumé and cover-letter builder with a truthfulness guard enforced in the data layer, not the prompt: a generated résumé that names an employer, title, date, degree or certification that isn't in your profile is rejected on the write path — whichever model wrote it. Run it on the Anthropic API, or bring your own agent through its 14-tool MCP server. Eight print-tuned templates → PDF (real headless Chromium), HTML and ATS text. ~600 automated tests.
@@ -65,6 +67,8 @@ Local AI résumé and cover-letter builder with a truthfulness guard enforced in
 
 </td>
 <td width="50%" valign="top">
+
+[![Diagram: documents flow into BM25 and dense retrieval, get merged and re-ranked, and come out as an answer with [1] [2] citations](https://raw.githubusercontent.com/end1989/end1989/main/assets/cards/docsai.webp)](https://github.com/end1989/docsai)
 
 **[DocsAI](https://github.com/end1989/docsai)**
 
@@ -77,6 +81,8 @@ Local-first hybrid RAG engine. Point it at a docs site, a folder of PDFs, or an 
 <tr>
 <td width="50%" valign="top">
 
+[![Diagram: a manager dispatches to three isolated workers; their results pass a review gate into an audit log](https://raw.githubusercontent.com/end1989/end1989/main/assets/cards/orchestration.webp)](https://github.com/end1989/ai-manager)
+
 **[Task Orchestration Engine](https://github.com/end1989/ai-manager)**
 
 Single-host manager–worker system for AI-executed tasks: process isolation, resource limits, automated review-and-approval gates, secret detection, and a full audit trail of everything that ran.
@@ -85,6 +91,8 @@ Single-host manager–worker system for AI-executed tasks: process isolation, re
 
 </td>
 <td width="50%" valign="top">
+
+[![A lightning bolt over city lights — an actual frame Lightning Finder extracted from a storm video](https://raw.githubusercontent.com/end1989/end1989/main/assets/cards/lightning.webp)](https://github.com/end1989/lightning-finder)
 
 **[Lightning Finder](https://github.com/end1989/lightning-finder)**
 
