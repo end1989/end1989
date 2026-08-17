@@ -43,7 +43,7 @@ Built for people who may be in danger: an emergency exit that swaps the tab for 
 </td>
 <td width="50%" valign="middle">
 
-[![VerifyMyAI landing page — “Check if your AI is really yours.” — with the always-visible help bar and emergency exit](https://raw.githubusercontent.com/end1989/end1989/main/assets/verifymyai.png)](https://verifymyai.org)
+[![VerifyMyAI’s Choose Platform step — “Which AI tool do you use?” with cards for ChatGPT, Claude, Gemini, Copilot and Grok, the always-visible help bar, and the emergency exit](https://raw.githubusercontent.com/end1989/end1989/main/assets/verifymyai.png)](https://verifymyai.org)
 
 </td>
 </tr>

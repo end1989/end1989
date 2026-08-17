@@ -38,13 +38,13 @@
   .mono {
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.08em;
+    font-size: 22px;
+    letter-spacing: 0.06em;
   }
 
   /* theme tokens */
-  .dark  { --ink: #e6edf3; --muted: #8b949e; --rule: #3d444d; --trace: #14b8a6; --spike: #2dd4bf; --label: #2dd4bf; }
-  .light { --ink: #1f2328; --muted: #656d76; --rule: #d0d7de; --trace: #0d9488; --spike: #0f766e; --label: #0f766e; }
+  .dark  { --ink: #e6edf3; --muted: #8b949e; --rule: #7d8590; --trace: #14b8a6; --spike: #2dd4bf; --label: #2dd4bf; }
+  .light { --ink: #1f2328; --muted: #656d76; --rule: #8c959f; --trace: #0d9488; --spike: #0f766e; --label: #0f766e; }
 </style>
 </head>
 <body>
@@ -100,17 +100,17 @@
   <text class="name" x="${W / 2}" y="120" text-anchor="middle" fill="var(--ink)">Eldon Dahlin</text>
 
   <!-- rolling baseline: what the detector compares against -->
-  <path d="${path(base)}" fill="none" stroke="var(--rule)" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <path d="${path(base)}" fill="none" stroke="var(--rule)" stroke-width="2.2" stroke-dasharray="7 7" stroke-linecap="round"/>
 
   <!-- the trace -->
-  <path d="${path(before)}" fill="none" stroke="var(--trace)" stroke-opacity="0.72" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="${path(after)}"  fill="none" stroke="var(--trace)" stroke-opacity="0.72" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="${path(during)}" fill="none" stroke="var(--spike)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="${path(before)}" fill="none" stroke="var(--trace)" stroke-opacity="0.8" stroke-width="2.75" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="${path(after)}"  fill="none" stroke="var(--trace)" stroke-opacity="0.8" stroke-width="2.75" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="${path(during)}" fill="none" stroke="var(--spike)" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
 
   <!-- the flag -->
-  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="4" fill="var(--spike)"/>
-  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="9" fill="none" stroke="var(--spike)" stroke-opacity="0.45" stroke-width="1.2"/>
-  <text class="mono" x="${(apex[0] + 18).toFixed(1)}" y="${(apex[1] + 5).toFixed(1)}" fill="var(--label)">flagged</text>
+  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="6" fill="var(--spike)"/>
+  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="13" fill="none" stroke="var(--spike)" stroke-opacity="0.6" stroke-width="1.8"/>
+  <text class="mono" x="${(apex[0] + 24).toFixed(1)}" y="${(apex[1] + 8).toFixed(1)}" fill="var(--label)">flagged</text>
 </svg>`;
   document.getElementById('stage').innerHTML = svg;
 })();
