@@ -1,0 +1,119 @@
+<!doctype html>
+<!--
+  Profile banner source — renders to assets/banner-dark.png / assets/banner-light.png.
+
+  Open with ?theme=dark or ?theme=light and screenshot the #stage element with a
+  transparent background at 2x. Fonts: Instrument Sans + IBM Plex Mono (both OFL,
+  from github.com/google/fonts) — drop the .ttf files in ./fonts/ next to this file.
+
+  The signature graphic is a detection trace: sensor noise with slow drift, a dashed
+  rolling baseline that follows the drift, and one sharp flash-shaped spike flagged
+  above it. It is the same idea as the flash detector in lightning-finder — key off
+  the *rise* over a rolling baseline, not the absolute level — and, more broadly,
+  the through-line of the work: find the one thing that doesn't belong.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('./fonts/InstrumentSans.ttf') format('truetype'); font-weight: 400 700; }
+  @font-face { font-family: 'IBM Plex Mono'; src: url('./fonts/IBMPlexMono-Regular.ttf') format('truetype'); font-weight: 400; }
+  @font-face { font-family: 'IBM Plex Mono'; src: url('./fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; }
+
+  html, body { margin: 0; padding: 0; background: transparent; }
+  /* Preview backgrounds only — the screenshot omits the background entirely. */
+  body.preview-dark  { background: #0d1117; }
+  body.preview-light { background: #ffffff; }
+
+  #stage { width: 1200px; height: 290px; position: relative; overflow: hidden; }
+  svg { display: block; }
+
+  .name {
+    font-family: 'Instrument Sans', -apple-system, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 72px;
+    letter-spacing: -0.028em;
+    font-variation-settings: 'wght' 600, 'wdth' 100;
+  }
+  .mono {
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  /* theme tokens */
+  .dark  { --ink: #e6edf3; --muted: #8b949e; --rule: #3d444d; --trace: #14b8a6; --spike: #2dd4bf; --label: #2dd4bf; }
+  .light { --ink: #1f2328; --muted: #656d76; --rule: #d0d7de; --trace: #0d9488; --spike: #0f766e; --label: #0f766e; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const theme = params.get('theme') === 'light' ? 'light' : 'dark';
+  const preview = params.get('preview') === '1';
+  if (preview) document.body.className = 'preview-' + theme;
+
+  const W = 1200, H = 290;
+
+  // ---- deterministic noise (seeded, so both themes and every render match) ----
+  function mulberry32(a) { return function () { let t = a += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const rnd = mulberry32(19890417);
+
+  const step = 3;                       // px between samples
+  const n = Math.floor(W / step) + 1;
+  const baseY = 224;                    // resting level of the trace
+  const drift = x => 11 * Math.sin(x / 165 + 0.9) + 5 * Math.sin(x / 61 - 2.1);   // slow wander (auto-exposure, dusk)
+  // smooth sensor noise: a few incommensurate sines + a little jitter
+  const jitter = []; for (let i = 0; i < n; i++) jitter.push((rnd() - 0.5) * 3.2);
+  const noise = x => 3.6 * Math.sin(x / 9.3) + 2.4 * Math.sin(x / 4.7 + 1.3) + 1.6 * Math.sin(x / 2.9 + 0.4);
+
+  const spikeX = 745;                   // where the flash lands (~62% across)
+  function spike(x) {                   // sharp rise, exponential decay, one flicker
+    const d = x - spikeX;
+    if (d < -7 || d > 70) return 0;
+    if (d < 0) return 58 * Math.pow((d + 7) / 7, 2.2);
+    return 58 * Math.exp(-d / 17) + 9 * Math.exp(-Math.pow((d - 24) / 6, 2));
+  }
+
+  const pts = [], base = [];
+  let ema = baseY + drift(0);
+  for (let i = 0; i < n; i++) {
+    const x = i * step;
+    const quiet = baseY + drift(x) + noise(x) + jitter[i];   // signal without the event
+    ema = ema + 0.055 * (quiet - ema);                       // rolling baseline follows drift, ignores fast wiggle
+    base.push([x, ema]);
+    pts.push([x, quiet - spike(x)]);
+  }
+  const path = a => a.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+
+  // split the trace so the event segment can be drawn brighter
+  const before = pts.filter(p => p[0] <= spikeX - 7);
+  const during = pts.filter(p => p[0] >= spikeX - 9 && p[0] <= spikeX + 72);
+  const after  = pts.filter(p => p[0] >= spikeX + 69);
+  const apex = pts.reduce((m, p) => (p[1] < m[1] ? p : m), pts[0]);
+
+  const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" class="${theme}" role="img" aria-label="Eldon Dahlin">
+  <text class="name" x="${W / 2}" y="120" text-anchor="middle" fill="var(--ink)">Eldon Dahlin</text>
+
+  <!-- rolling baseline: what the detector compares against -->
+  <path d="${path(base)}" fill="none" stroke="var(--rule)" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+
+  <!-- the trace -->
+  <path d="${path(before)}" fill="none" stroke="var(--trace)" stroke-opacity="0.72" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="${path(after)}"  fill="none" stroke="var(--trace)" stroke-opacity="0.72" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="${path(during)}" fill="none" stroke="var(--spike)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- the flag -->
+  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="4" fill="var(--spike)"/>
+  <circle cx="${apex[0].toFixed(1)}" cy="${apex[1].toFixed(1)}" r="9" fill="none" stroke="var(--spike)" stroke-opacity="0.45" stroke-width="1.2"/>
+  <text class="mono" x="${(apex[0] + 18).toFixed(1)}" y="${(apex[1] + 5).toFixed(1)}" fill="var(--label)">flagged</text>
+</svg>`;
+  document.getElementById('stage').innerHTML = svg;
+})();
+</script>
+</body>
+</html>
