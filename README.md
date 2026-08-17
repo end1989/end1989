@@ -13,6 +13,8 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/eldon-dahlin)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:eldondahlin@gmail.com)
+[![Résumé (PDF)](https://img.shields.io/badge/R%C3%A9sum%C3%A9-PDF-475569?style=for-the-badge&logo=readdotcv&logoColor=white)](https://github.com/end1989/end1989/blob/main/assets/Eldon_Dahlin_Resume.pdf)
+<br>
 [![Location](https://img.shields.io/badge/Denver,_CO-Will_Relocate_for_Anthropic-14B8A6?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 [![Status](https://img.shields.io/badge/Status-Open_to_Work-brightgreen?style=for-the-badge&logo=openstatus&logoColor=white)](#)
 
@@ -133,5 +135,6 @@ Galvanize bootcamp grad (2018), writing production code ever since. Lived in Per
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/eldon-dahlin)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:eldondahlin@gmail.com)
+[![Résumé (PDF)](https://img.shields.io/badge/R%C3%A9sum%C3%A9-PDF-475569?style=flat-square&logo=readdotcv&logoColor=white)](https://github.com/end1989/end1989/blob/main/assets/Eldon_Dahlin_Resume.pdf)
 
 </div>
